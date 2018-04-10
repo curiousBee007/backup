@@ -1,0 +1,50 @@
+import java.util.*;
+public class MaxCode {
+
+
+ public static void findingMaximumCode(String line){
+	 
+	 String strippedInput = line.replaceAll("\\W", "");
+	 String lowerCaseValue = strippedInput.toLowerCase();
+	 
+	 HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+	 for(int i = 0 ; i < lowerCaseValue.length(); i++){
+		 char ch = lowerCaseValue.charAt(i);
+		 if(map.containsKey(ch)){
+			 int countVal = map.get(ch);
+			 countVal = countVal+ 1;
+			 map.put(ch, countVal);
+		 }
+		 else{
+			 map.put(ch,1);
+		 }
+	 }
+	 PriorityQueue<Integer> queue = new PriorityQueue<>(26, Collections.reverseOrder());
+	 Set set = map.entrySet();
+     Iterator iterator = set.iterator();
+     while(iterator.hasNext()) {
+        Map.Entry mentry = (Map.Entry)iterator.next();
+        queue.offer((int)(mentry.getValue()));
+     }
+     int maxLetter = 26;
+     int maxSum = 0;
+     Integer val = null;
+     while( (val = queue.poll()) != null) {
+    	 maxSum = maxSum + val * maxLetter;
+    	 maxLetter = maxLetter -1;
+     }
+     //System.out.println();
+	 System.out.println(maxSum);
+	 
+ }	
+	
+
+
+public static void main(String[] args){
+	
+	String line = "ABbcCC";
+	//String line1 = "I am a good person";
+	findingMaximumCode(line);
+}
+
+}

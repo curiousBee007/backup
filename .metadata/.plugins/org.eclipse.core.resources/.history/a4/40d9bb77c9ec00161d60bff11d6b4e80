@@ -1,0 +1,75 @@
+
+public class findingElementSortedMatrix {
+	
+	 public boolean searchMatrix(int[][] matrix, int target) {
+		    if(matrix == null || matrix.length == 0 || matrix[0].length == 0)
+		       {System.out.println("Check 0");
+		    	return false;
+		       
+		       }
+		      
+		    
+		    int columnLength = matrix[0].length; 
+		    int mid = (columnLength -1)/2;
+		    int start = 0;
+		    int end = columnLength -1;
+		    boolean foundTarget = false;
+		    
+		        
+		    for(int i = 0 ; i < matrix.length ;i++)
+		     { 
+		        if(target >= matrix[i][start] && target <= matrix[i][end]){
+		        	System.out.println("Check 1");
+		            int midElem  = matrix[i][mid];
+		            if(target == midElem){
+		            	System.out.println("Check 2");
+		                return true;
+		            }
+		            if(target < midElem){
+		            boolean foundVal = binarySearch(0,mid-1,target,matrix[i]);
+		            System.out.println("Check 3");
+		            if(foundVal){
+		            	System.out.println("Check 4");
+		               return foundVal;
+		               }
+		        }
+		        if(target > midElem){
+		        	System.out.println("Check 5");
+		            boolean foundVal1 = binarySearch(mid + 1,end,target,matrix[i]);
+		            if(foundVal1){
+		            	System.out.println("Check 6");
+		               return foundVal1;}
+		        }
+		        
+		     }
+		        
+		     }  
+		        return foundTarget;
+		    }
+		    
+		    public boolean binarySearch(int start,int end , int x,int arr[]){
+		        boolean foundElement = false;
+		        while(start <= end){
+		            int mid = (start + end)/2;
+		            if(arr[mid] == x)
+		             return true;
+		            else if(arr[mid] < x){
+		                end = mid -1;
+		            }
+		            else{
+		                start  = mid +1; 
+		            }
+		        }
+		        
+		        return foundElement;
+		    }
+		    
+		    public static void main(String[] args){
+		    	int mat [][] = {{1,3,5}};
+		    	findingElementSortedMatrix obj = new findingElementSortedMatrix();
+		    	int target = 3;
+		    	boolean found = obj.searchMatrix(mat, target);
+		    	System.out.println( "Found value is "+found);
+		    }
+
+}

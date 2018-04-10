@@ -1,0 +1,48 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Maximum_Rotate_Function {
+	public int maxRotateFunction(int[] A) {
+        if(A == null)
+        return 0;
+        
+        
+        
+        int max = 0;
+        
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for(Integer i : A){
+            queue.offer(i);
+        }
+        
+        int n = A.length;
+        
+        for(int i = 0 ; i < n-1;i++){
+            int sum = 0;
+            
+            for(int j = 0; j < n-1;j++){
+                int firstTerm = queue.poll();
+                sum = sum + j * firstTerm;
+                queue.add(firstTerm);
+                //queue.
+                
+            }
+            max = Math.max(sum,max);
+            int firstTermRemoved = queue.poll();
+            queue.add(firstTermRemoved);
+            
+        }
+        
+        
+        return max;
+    }
+	
+	public static void main(String[] args){
+		
+		Maximum_Rotate_Function obj = new Maximum_Rotate_Function();
+		int A[] = {4,3,2,6};
+		int max = obj.maxRotateFunction(A);
+		System.out.println(max);
+	}
+
+}

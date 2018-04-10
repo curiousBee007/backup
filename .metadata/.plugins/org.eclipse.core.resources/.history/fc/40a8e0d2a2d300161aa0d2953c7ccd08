@@ -1,0 +1,64 @@
+import java.util.*;
+
+/*[
+ [2],
+[3,4],
+[6,5,7],
+[4,1,8,3]
+]*/
+
+public class Triangle {
+	
+	public int minimumTotal(List<List<Integer>> triangle) {
+	    int[] A = new int[triangle.size()+1];
+	    System.out.println("Length of triangle is "+A.length);
+	    
+	    for(int i=triangle.size()-1;i>=0;i--){
+	        
+	    	for(int j=0;j<triangle.get(i).size();j++){
+	            
+	    		System.out.print(" Addend term "+A[j] +" "+A[j+1] + " triangle term "+triangle.get(i).get(j));
+	    		A[j] = Math.min(A[j],A[j+1])+triangle.get(i).get(j);
+	    		
+	            //System.out.print(" " +A[j]);
+	            System.out.println();
+	        }
+	        System.out.println("-----------");
+	    }
+	    return A[0];
+	}
+	
+	public static void main(String[] args){
+		
+		Triangle obj = new Triangle();
+		List<List<Integer>> triangle =new ArrayList<List<Integer>>();
+		
+		List<Integer> arrList = new ArrayList<Integer>();
+		arrList.add(2);
+		triangle.add(arrList);
+		
+		List<Integer> arrList1 = new ArrayList<Integer>();
+		arrList1.add(3);
+		arrList1.add(4);
+		triangle.add(arrList1);
+		
+		List<Integer> arrList2 = new ArrayList<Integer>();
+		arrList2.add(6);
+		arrList2.add(5);
+		arrList2.add(7);
+		triangle.add(arrList2);
+		
+		List<Integer> arrList3 = new ArrayList<Integer>();
+		arrList3.add(4);
+		arrList3.add(1);
+		arrList3.add(8);
+		arrList3.add(3);
+		triangle.add(arrList3);
+		
+		int x = obj.minimumTotal(triangle);
+		System.out.println(x);
+		
+		
+	}
+	
+}

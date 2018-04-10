@@ -1,0 +1,55 @@
+
+
+public class SelectionSort {
+
+	public int[] findSortedArray(int a[]){
+		
+		for(int i = 0; i < a.length -1 ;i++){
+			 int min = a[i];
+			 
+			 for(int j = i+1; j < a.length;j++){
+				
+				 if(min > a[j]){
+				   int temp = min;
+					min = a[j];
+					a[j] = temp;
+					
+				}
+				 
+			  a[i] = min;
+				
+			}
+		}
+		
+		
+		return a;
+	}
+
+  
+	public void printArray(int a[]){
+		
+		for(int i = 0; i < a.length;i++){
+			System.out.print( " " + a[i]);
+		}
+		System.out.println();
+	}
+	
+	
+
+  public static void main(String[] args){
+	  
+	  int a[] = {5,4,3,7,18,9};
+	  SelectionSort obj = new SelectionSort();
+	  
+	  System.out.println("Array  before sorting");
+	  obj.printArray(a);
+	  
+	  a = obj.findSortedArray(a);
+	  
+	  System.out.println("Array after  sorting");
+	  obj.printArray(a);
+  }
+
+
+
+}

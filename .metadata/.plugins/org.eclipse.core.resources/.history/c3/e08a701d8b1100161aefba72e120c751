@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class QueueImplement {
+	
+	private int front;
+	private int end;
+	private List<Integer> queue;
+	
+	
+	public QueueImplement(){
+		this.front = -1;
+		this.end = -1;
+		queue = new ArrayList<Integer>();
+		
+	}
+	
+	public void addElement(int elem){
+		if(front == -1 && end == -1){
+			++end;
+			queue.add(end,elem);
+			front++;
+			return;
+			
+		}
+		++end;
+		queue.add(end,elem);
+		
+	}
+	
+	
+	public Integer removeElement(){
+		if(front == -1){
+			return null;
+		}
+		int x = queue.get(front);
+		front++;
+		return x;
+	}
+	
+	
+
+}

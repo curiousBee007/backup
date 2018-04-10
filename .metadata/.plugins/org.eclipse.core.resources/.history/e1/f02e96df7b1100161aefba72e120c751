@@ -1,0 +1,67 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class StackImplement {
+	
+	int top ;
+	List<Integer> stack1 = new ArrayList<Integer>();
+	int size;
+
+
+	public StackImplement(){
+		this.top = -1;
+	}
+	
+	public boolean isEmpty(){
+		
+		boolean isEmpty = false;
+		
+		if(this.top == -1){
+			System.out.println("Stack is empty");
+			isEmpty =  true;
+		}
+		return isEmpty;
+	
+	}
+   
+	public void push(int x){
+		if(this.top == -1){
+			top ++;}
+		this.stack1.add(this.top, x);
+		this.top++;
+		
+	}
+	
+  public Integer pop(){
+	  if (isEmpty()){
+		  System.out.println("Stack is empty it cannot be popped");
+		  return -1;
+		 }
+	  int x = this.stack1.get(this.top);
+	  this.top --;
+	  return x;
+	  }
+
+	
+  public static void main(String[] args){
+	  
+	  StackImplement obj = new StackImplement();
+	  
+	  obj.push(20);
+	  obj.push(30);
+	 // obj.pop();
+	  obj .push(40);
+	  //obj.pop();
+	  
+	  System.out.println("Element on top" + obj.pop());
+	  
+	  
+	  
+		
+		
+	}
+  
+  
+  
+	
+}

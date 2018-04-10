@@ -1,0 +1,35 @@
+
+public class LongestAbsoluteFilePath {
+	public int lengthLongestPath(String input) {
+        String[] paths = input.split("\f");
+        for(String s : paths){
+        	//System.out.println(s);
+        }
+        
+        int[] stack = new int[paths.length+1];
+        int maxLen = 0;
+       
+       for(String s:paths){
+           
+       int lev = s.lastIndexOf("\t")+1;
+       System.out.println(" "+s + "Lev "+lev);
+       
+       //+1 for adding /
+       stack[lev+1] = stack[lev]+s.length()-lev+1;
+       
+       int curLen = stack[lev+1]; 
+       
+       if(s.contains(".")) {
+           maxLen = Math.max(maxLen, curLen-1);
+           
+         }
+       }
+   return maxLen;
+   }
+	
+	public static void main(String[] args){
+		LongestAbsoluteFilePath obj = new LongestAbsoluteFilePath();
+		String input = "user\f\tpictures\f\t\tphoto.png\f\t\tcamera\f\tdocuments\f\t\tlectures\f\t\t\tnotes.txt";
+		obj.lengthLongestPath(input);
+	}
+}

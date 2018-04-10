@@ -1,0 +1,138 @@
+
+
+class ListNode<T> {
+ListNode(T x) {
+  value = x;
+}
+T value;
+ListNode<T> next;
+}
+
+public class Palindrome {
+
+	boolean isListPalindrome(ListNode<Integer> l) {
+		   ListNode head = l;
+		   ListNode fast = head, slow = head;
+		   while(fast != null && fast.next != null){
+		      
+		      fast = fast.next.next;
+		      slow = slow.next;
+		   }
+		   if(fast != null){
+		      //for tackling lists with odd size
+		      slow = slow.next;
+		   }
+		   slow = reverse(slow);
+		   fast = head;
+		   
+		   while(slow != null){
+			  int fast1 = (int) fast.value;
+			  int slow1 = (int) slow.value;
+			  
+		      if(fast1 != slow1)
+		         {
+		    	  System.out.println("Fast value "+fast1);
+		    	  System.out.println("Slow value "+slow1);
+		    	  return false;
+		         }
+		      System.out.println();
+		      
+		      fast = fast.next;
+		      slow = slow.next;
+		   }
+		   return true;
+		}
+
+		public ListNode reverse(ListNode head){
+		   
+		   ListNode prev = null;
+		   while(head != null){
+		      ListNode next = head.next;
+		      head.next = prev;
+		      prev = head;
+		      head = next;
+		   }
+		  return prev;
+
+		}
+		
+		ListNode<Integer> addTwoHugeNumbers(ListNode<Integer> a, ListNode<Integer> b) {
+			   a = reverse(a);
+			   
+			   b = reverse(b);
+			   
+			   ListNode dummyNode = new ListNode(0);
+			   
+			   ListNode head = dummyNode.next;
+			   ListNode prev = head;
+			   int carry = 0;
+			   
+			   while(a != null && b!= null){
+			      
+			      int sum = a.value + b.value;
+			      carry = sum / 10000;
+			      sum = sum % 10000;
+			      head = new ListNode(sum);
+			      head = head.next;
+			      a = a.next;
+			      b = b.next;
+			   }
+			   if(a != null){
+			      
+			      int sum = a.value + carry;
+			      carry = sum / 10000;
+			      sum = sum % 10000;
+			      head = new ListNode(sum);
+			      head = head.next;
+			   }
+			   if(b != null){
+			      
+			      int sum = b.value + carry;
+			      carry = sum / 10000;
+			      sum = sum % 10000;
+			      head = new ListNode(sum);
+			      head = head.next;
+			   
+			   }
+			   if(carry > 0){
+			       head = new ListNode(carry);
+			   }
+			   
+			   //ListNode head1 = reverse(dummyNode.next);
+			   return prev;
+			   
+			}
+
+      public static void main(String[] args){
+    	  ListNode head = new ListNode(1);
+    	  head.next = new ListNode(1000000000);
+    	  head.next.next = new ListNode(-1000000000);
+    	  head.next.next.next = new ListNode(-1000000000);
+    	  head.next.next.next.next = new ListNode(1000000000);
+    	  head.next.next.next.next.next = new ListNode(1);
+    	  
+    	  ListNode a = new ListNode(9876);
+    	  a.next = new ListNode(5432);
+    	  a.next.next = new ListNode(1999);
+    	  
+    	  ListNode b = new ListNode(1);
+    	  b.next = new ListNode(8001);
+    	  
+    	  
+    	  
+    	  
+    	 // a.next.next = new ListNode(5432);
+    	  
+    	  Palindrome obj = new Palindrome();
+    	  ListNode head1 = obj.addTwoHugeNumbers(a,b);
+    	  while(head1 != null){
+    		  System.out.println(head1);
+    		  head1 = head1.next;
+    	  }
+    	  
+    	  //boolean val = obj.isListPalindrome(head);
+    	  //System.out.println(val);
+      }
+
+
+}

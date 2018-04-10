@@ -1,0 +1,81 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class TopKFrequentElement {
+	
+	public List<Integer> topKFrequent(int[] nums, int k) {
+        List<ArrayList<Integer>> frequentList = new ArrayList<ArrayList<Integer>>();
+        List<Integer> finalList = new ArrayList<Integer>();
+        
+        Map<Integer, Integer> hashmap = new HashMap<Integer,Integer>();
+        
+        for(int i = 0; i < nums.length;i++){
+        	
+            if (hashmap.containsKey(nums[i])){
+            	
+            	int x = hashmap.get(nums[i]);
+            	x = x +1;
+            	hashmap.put(nums[i], x);
+            	}
+            	
+            else{
+            	
+            	hashmap.put(nums[i], 1);
+            	}
+               
+        }
+    
+        
+        for (Map.Entry<Integer, Integer> entry : hashmap.entrySet()) {
+        	Integer key = entry.getKey();
+        	Integer value = entry.getValue();
+           if(frequentList.get(value).isEmpty()){
+        	   ArrayList<Integer> tempList = new ArrayList<Integer>();
+        	   tempList.add(key);
+        	   frequentList.add(value, tempList);
+        	   
+           }
+           else{
+        	   ArrayList<Integer> tempList1 =  frequentList.get(value);
+        	   tempList1.add(key);
+        	   frequentList.add(value, tempList1);
+        	   
+        	   }
+        	
+        	}
+        
+        int count = 0;
+        for(ArrayList<Integer> arr1: frequentList){
+        	if(count >= k){
+        		for(int i : arr1){
+        			System.out.println(arr1.get(i));
+        			finalList.add(arr1.get(i));
+        		}
+        	count ++;	
+        	}
+        	
+        	
+        }
+        
+        
+        return finalList;
+    }
+	
+	
+	public static void main(String[] args){
+		
+		TopKFrequentElement obj = new TopKFrequentElement();
+		int nums[] = {1,1,1,2,2,3};
+		int k = 3;
+		List<Integer> list = obj.topKFrequent(nums, k);
+		for(int i = 0; i <list.size(); i++){
+			System.out.println(list.get(i));
+			
+		}
+		
+		
+	}
+
+}

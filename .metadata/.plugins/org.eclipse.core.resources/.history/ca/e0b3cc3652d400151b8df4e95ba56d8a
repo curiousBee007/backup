@@ -1,0 +1,97 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+
+
+public class TrainingSetMidSem {
+	
+	ArrayList<Integer> arrList;
+	HashMap<String, ArrayList<Integer>> hashMap = new HashMap<String, ArrayList<Integer>>();
+	
+	
+	
+	public static int randomInteger(int min, int max) {
+
+	    Random rand = new Random();
+
+	    // nextInt excludes the top value so we have to add 1 to include the top value
+	    int randomNum = rand.nextInt((max - min) + 1) + min;
+
+	    return randomNum;
+	}
+	
+	
+	
+	
+	public void generatingEpisode(){
+		
+		int sum = 0;
+		int length = 0;
+		int asciiVal = 68;
+		char[] charArr;
+		String str;
+		
+		for(int i =0; i < 10;i++){
+			 sum = 0;
+			 length = 0;
+			 asciiVal = 68;
+			 arrList = new ArrayList<Integer>();
+			 charArr = new char[5];
+			 charArr[0] = 'D';
+			 str = "";
+			 
+			while ( (sum > -3 && sum < 3) &&  length < 4){
+				
+				int num = randomInteger(0,1);
+				
+				if(num == 0){
+					sum = sum -1;
+					length = length +1;
+					asciiVal = asciiVal -1;
+					//System.out.println("Ascii value " +asciiVal);
+					char b = (char) (asciiVal);
+					//System.out.println( " " +b);
+					charArr[length] = b;
+					
+				}
+				
+				if(num == 1){
+				 sum = sum +1;	
+				 length = length +1;
+				 asciiVal = asciiVal +1;
+				 
+				 char a = (char) (asciiVal);
+		
+				 charArr[length] = a;
+				}
+				
+				
+			}
+			
+			if(length == 4){
+			str = str + "D "+ charArr[1] + charArr[2] + charArr[3] +charArr[4] ;
+			System.out.println(str);
+			}	
+		}
+		
+		
+		
+		
+	}
+	
+	
+	public static void main(String[] args){
+		
+		TrainingSetMidSem obj = new TrainingSetMidSem();
+		
+		obj.generatingEpisode();
+		
+	}
+	
+	
+	
+	
+	
+	 
+
+}

@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class TopKFrequentElement {
+	
+	public List<Integer> topKFrequent(int[] nums, int k) {
+        List<ArrayList<Integer>> frequentList = new ArrayList<ArrayList<Integer>>();
+        Map<Integer, Integer> hashmap = new HashMap<Integer,Integer>();
+        for(int i = 0; i < nums.length;i++){
+        	
+            if (hashmap.containsKey(nums[i])){
+            	int x = hashmap.get(nums[i]);
+            	x = x +1;
+            	hashmap.put(nums[i], x);
+            	if(x >= k && !frequentList.contains(nums[i]))
+            		frequentList.add(nums[i]);
+            	}
+            else{
+            	//System.out.println("Inside hashmap");
+            	
+            	hashmap.put(nums[i], 1);
+            	
+            	
+            }
+               }
+    
+        return frequentList; 
+    }
+	
+	
+	public static void main(String[] args){
+		
+		TopKFrequentElement obj = new TopKFrequentElement();
+		int nums[] = {1,1,1,2,2,3};
+		int k = 3;
+		List<Integer> list = obj.topKFrequent(nums, k);
+		for(int i = 0; i <list.size(); i++){
+			System.out.println(list.get(i));
+			
+		}
+		
+		
+	}
+
+}

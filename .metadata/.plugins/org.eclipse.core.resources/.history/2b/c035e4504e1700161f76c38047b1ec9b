@@ -1,0 +1,53 @@
+import java.util.Random;
+
+public class QuickSort {
+	
+	public static void sort(int[] a) {
+	        //StdRandom.shuffle(a);
+	        //sort(a, 0, a.length - 1);
+	       
+	    }
+	
+	
+	
+	 static void shuffleArray(int[] ar)
+	  {
+	    // If running on Java 6 or older, use `new Random()` on RHS here
+	    Random rnd = new Random();
+	    for (int i = ar.length - 1; i > 0; i--)
+	    {
+	      int index = rnd.nextInt(i + 1);
+	      // Simple swap
+	      int a = ar[index];
+	      ar[index] = ar[i];
+	      ar[i] = a;
+	    }
+	  }
+	
+	
+	 public  static void printArray(int a[]){
+			
+	  for(int i = 0; i < a.length;i++){
+		 System.out.print( " " + a[i]);
+	    }
+		System.out.println();
+		}
+	 
+	 
+	 public static void main(String[] args){
+		 
+		 int a[] = {5,4,3,7,18,9};
+		 
+		 System.out.println("Array before shuffling ");
+		 
+		 printArray(a);
+		 
+		 shuffleArray(a);
+		 
+		 System.out.println("Array after shuffling  ");
+		 
+		 printArray(a);
+		 
+		 }
+	 
+	 }

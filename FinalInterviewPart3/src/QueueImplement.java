@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class QueueImplement {
+	
+	private int front;
+	private int end;
+	private List<Integer> queue;
+	
+	
+	public QueueImplement(){
+		this.front = -1;
+		this.end = -1;
+		queue = new ArrayList<Integer>();
+		
+	}
+	
+	public void addElement(int elem){
+		if(front == -1 && end == -1){
+			++end;
+			queue.add(end,elem);
+			front++;
+			return;
+			
+		}
+		++end;
+		queue.add(end,elem);
+		
+	}
+	
+	
+	public Integer removeElement(){
+		if(front == -1 && end == -1){
+			System.out.println("Queue is empty");
+			return null;
+		}
+		
+		int x = queue.get(front);
+		front++;
+		return x;
+	}
+	
+	public static void main(String[] args){
+		
+		QueueImplement obj = new QueueImplement();
+		obj.addElement(10);
+		obj.addElement(20);
+		obj.addElement(30);
+		int firstPop = obj.removeElement();
+		int secondPop = obj.removeElement();
+		int thirdPop = obj.removeElement();
+		//int fourthPop = obj.removeElement();
+		System.out.println("The first element is "+firstPop);
+		System.out.println("The second element is "+secondPop);
+		System.out.println("The third element is "+thirdPop);
+		//System.out.println(fourthPop);
+	}
+	
+
+}

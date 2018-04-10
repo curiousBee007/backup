@@ -1,0 +1,27 @@
+
+public class ValidPalindrome {
+	
+	
+	 public boolean isPalindrome(String s) {
+		 
+		 String x = s.replaceAll("[^a-zA-Z]", "");
+		 x = x.toLowerCase();
+		 System.out.println(x);
+		 
+		 
+		 
+		 return true;
+		 
+		 
+	        
+	    }
+	 public static void main(String[] args){
+		 ValidPalindrome obj = new ValidPalindrome();
+		 String s1 = "A man, a plan, a canal: Panama";
+		 obj.isPalindrome(s1);
+		 
+	 }
+	 
+	
+
+}

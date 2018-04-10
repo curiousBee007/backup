@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;CorrelatedLearningNewJava.java&apos; to &apos;CorrelatedLearningNewBurlap.java&apos;&#x0A;- Original project: &apos;ReinforcementLearningNewJava&apos;&#x0A;- Original element: &apos;CorrelatedLearningNewJava.java&apos;&#x0A;- Renamed element: &apos;CorrelatedLearningNewBurlap.java&apos;" description="Rename compilation unit &apos;CorrelatedLearningNewJava.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{CorrelatedLearningNewJava.java" name="CorrelatedLearningNewBurlap.java" references="false" stamp="1461124520074" version="1.0"/>
+</session>

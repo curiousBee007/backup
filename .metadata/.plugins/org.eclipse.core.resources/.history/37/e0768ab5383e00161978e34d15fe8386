@@ -1,0 +1,94 @@
+
+public class longestPalindromicSubstring {
+	
+	public String longestPalindrome(String s) {
+        if(s == null)
+        return null;
+        
+        
+        int length = s.length();
+        if(length == 1){
+            return s;
+            }
+        
+        if (length == 2){
+            if (s.charAt(0) == s.charAt(1))
+            return s;
+        }
+        boolean value[][] = new boolean[length][length];
+        for(int i = 0 ; i < length;i++){
+            value[i][i] = true;
+        }
+        
+        int maxLength = 0; int start = 0; int end = 0;
+        for(int k = 0; k < length-1 ; k++){
+            
+            int i = k;
+            int j = k+1;
+            if (i+1 < j-1){
+                
+                boolean equalChar = (s.charAt(i) == s.charAt(j));
+                if(value[i+1][j-1] && equalChar){
+                    value[i][j] = true;
+                    
+                    int difference = j - i;
+                    if( difference > maxLength){
+                        maxLength = difference;
+                        start = i;
+                        end = j;
+                    }
+                    
+                    if( i == 0 && j == 3){
+                    	System.out.println(Last Point);
+                    }
+                    
+                }
+                else
+                {
+                   value[i][j] = false; 
+                }
+            }
+            else{
+            	
+                boolean val1 = (s.charAt(i) == s.charAt(j));
+                value[i][j] =val1; 
+                int difference = j - i;
+                    if( difference > maxLength){
+                        maxLength = difference;
+                        start = i;
+                        end = j;
+                    }
+                    
+            }
+            
+        }
+        
+        
+        for(int i = 0 ; i < length ; i++){
+        	for(int j = 0; j < length ; j++){
+        		System.out.print( "  " + value[i][j] +"  " );
+        		}
+        	
+        	System.out.println();
+        }
+        
+        
+        
+        
+        
+         System.out.println(maxLength);
+         System.out.println("Start point " +start  + "End point "+end);
+         String substr = s.substring(start,end);
+         return substr;
+         
+       
+        }
+        
+        public static void main(String[] args){
+        	longestPalindromicSubstring obj = new longestPalindromicSubstring();
+        	String s = "baab";
+        	String str = obj.longestPalindrome(s);
+        	System.out.println(str);
+        }
+
+}

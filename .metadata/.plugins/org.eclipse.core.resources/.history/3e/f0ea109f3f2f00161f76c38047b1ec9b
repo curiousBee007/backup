@@ -1,0 +1,162 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Stack;
+
+public class ReverseVowel {
+	
+	public String reverseVowels(String s) {
+        if (s == null)
+        return null;
+      
+       List<Integer> arrList = new ArrayList<Integer>();
+       String str = "";
+       int stringLength = s.length();
+        
+        for(int i = 0; i < stringLength; i++){
+            if (s.charAt(i) == 'a' || s.charAt(i) == 'e' || s.charAt(i) == 'o' ||s.charAt(i) == 'u' || s.charAt(i) == 'i')
+            {
+                arrList.add(i);
+                str = str + s.charAt(i);
+            }
+        }
+        
+   
+         String newStr = "";
+        
+        
+        if (arrList.size() >0){
+            
+
+            int initialVal = arrList.get(0);
+            int index = 0;
+        	 String reverseString ="";
+             
+             for(int x =str.length()-1; x >=0;  x-- ){
+             	
+             	reverseString = reverseString +str.charAt(x);
+             } 	
+        	
+        for(int i = 0; i < stringLength; i++){
+        	
+        	//System.out.println("Index val "+index);
+        	
+        	
+        	if (i == initialVal){
+        		//char origChar = s.charAt(i);
+        		char newChar = reverseString.charAt(index);
+        		//System.out.println("Original : " + origChar  + "New : "+newChar );
+        		newStr = newStr + newChar;
+        		index++;
+        		if (index < arrList.size())
+        		  {initialVal =arrList.get(index); }
+        	}
+        	else{
+        		newStr = newStr + s.charAt(i);
+        	}
+        	
+        }
+        }
+        
+        else
+        	newStr = s;
+        
+        
+        return newStr;
+        
+    }
+	
+	
+	public HashMap<Integer,Integer> findInteger(String s, int i){
+		
+		Stack<Integer> tempStack = new Stack <Integer>();
+		
+		char t = s.charAt(i);
+		HashMap<Integer,Integer> hashMap = new HashMap<Integer,Integer>();
+		
+		//tempStack.push((int)t);
+		
+		while(t != 43 && t != 45 && t != 47 && t != 42 && t != 32 && i != s.length()-1){
+			tempStack.push((int)t);
+			i = i+1;
+			t = s.charAt(i);
+			}
+		
+		int count = 0;
+		int power = 0;
+		int sum = 0;
+		while (!tempStack.isEmpty()){
+			sum = (int) (sum + tempStack.pop() * Math.pow(10,power));
+			power ++;
+			count++;
+			
+		}
+		hashMap.put(sum, count-1);
+		return hashMap;
+		
+	}
+	
+	
+	public int calculate(String s) {
+        if (s == null)
+        return 0;
+        char operator[] = new char[s.length()];
+        int operand[] = new int[s.length()];
+        
+        
+        int countOperator = 0;
+        int countOperand = 0;
+        
+        
+        for(int i = 0; i < s.length(); i++){
+    	  char t =  s.charAt(i);
+    	  if ((int)t == 43 || (int)t == 45 || (int)t == 47 || (int)t == 42){
+    		  operator[countOperator] = t;
+    		  countOperator++;
+    		  }
+    	  
+    	if((int)t >=48 && (int)t <= 57){
+    		
+    		if(i <= s.length() - 2){
+    			int nextChar = s.charAt(i+1);
+    			if (nextChar >= 48 && nextChar <=57){
+    				
+    				
+    			} 
+    		}
+    		
+    	}
+    	 
+    	  
+    	 
+    }
+	 return 1;
+	}
+	
+	
+	
+	public static void main(String[] args){
+		ReverseVowel obj = new ReverseVowel();
+		String str = obj.reverseVowels("");
+		System.out.println(str);
+		String str1 = "322";
+		HashMap<Integer,Integer> hashMap= obj.findInteger(str1, 0);
+		Iterator iterator = hashMap.keySet().iterator();
+		
+		while (iterator.hasNext()) {
+			   Integer key = (Integer) iterator.next();
+			   Integer value = hashMap.get(key);
+
+			   System.out.println(key + " " + value);
+			}
+
+		
+		
+	}
+	
+	
+	
+	
+
+}

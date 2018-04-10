@@ -1,0 +1,75 @@
+import java.util.List;
+
+public class NeedleHaystack {
+	
+	 public int strStr(String haystack, String needle) {
+	        
+	        if (haystack.length() == 0 && needle.length() == 0)
+	        return 0;
+	        
+	       
+	        
+	        if(needle.length() > haystack.length())
+	        return -1;
+	        
+	        
+	        if(needle.length() == 0)
+	        return 0;
+	       
+	        char first = needle.charAt(0);
+	        
+	        int startIndex = -1;
+	        
+	        for(int i = 0; i < haystack.length(); i++){
+	            
+	            if (haystack.charAt(i) == first){
+	             
+	                int conflictFound = 0;
+	               
+	                for(int j = 1; j < needle.length(); j++)
+	                {
+	                    {
+	                    if((startIndex+j) > haystack.length())
+	                    {
+	                    	conflictFound = 1;
+	                    	break;
+	                    }
+	                    
+	                    if(haystack.charAt(startIndex+j) != needle.charAt(j)){
+	                      conflictFound = 1;
+	                        break;
+	                    }
+	                    }  
+	                }
+	                
+	                System.out.println("Conflict Found "+conflictFound);
+	                if(conflictFound == 0){
+	                   
+	                 return startIndex;
+	                }
+	            }
+	            
+	            
+	        }
+	        
+	        return startIndex;
+	    }
+	 
+	 public static void main(String[] args){
+		 NeedleHaystack obj = new NeedleHaystack();
+		 String str = "aaa";
+		 String str1 = "aa";
+		 
+		 int startIndex = obj.strStr(str, str1);
+		 System.out.println("Start index " +startIndex );
+		 //List<String> list1 = obj.letterCombinations(str);
+		 
+		
+		 
+		 
+	   }
+	}
+	 
+	 
+	 
+

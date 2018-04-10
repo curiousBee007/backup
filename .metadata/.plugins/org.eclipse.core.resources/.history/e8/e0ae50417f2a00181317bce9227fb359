@@ -1,0 +1,62 @@
+import java.util.*;
+public class ContainsCloseNums {
+
+	boolean containsCloseNums(int[] nums, int k) {
+
+	    HashMap<Integer,ArrayList<Integer>> hmap = new HashMap<Integer,ArrayList<Integer>>();
+	    
+	    for(int i = 0 ; i < nums.length ; i++){
+	        ArrayList<Integer> temp = new ArrayList<Integer>();
+	        if(hmap.containsKey(nums[i])){
+	            temp = hmap.get(nums[i]);
+	            temp.add(i);
+	            hmap.put(nums[i],temp);
+	        }
+	        else{
+	        	hmap.put(nums[i],temp);
+	        }
+	        
+	    }
+	    
+	    Set set = hmap.entrySet();
+	    Iterator iterator = set.iterator();
+	    while(iterator.hasNext()) {
+	         Map.Entry mentry = (Map.Entry)iterator.next();
+	         System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+	         ArrayList<Integer> arrList = (ArrayList<Integer>)mentry.getValue();
+	         
+	        if(arrList.size() > 1){
+	            Collections.sort(arrList);
+	            
+	            //int short = arrList.get(0);
+	            for(int i = 0; i < arrList.size()-1; i++){
+	                for(int j = i+1; j < arrList.size();j++){
+	                    int diff = Math.abs(arrList.get(i) - arrList.get(j));
+	                    System.out.println(diff);
+	                    if(diff <= k)
+	                        return true;
+	                }
+	             
+	         }
+	        } 
+	      }
+
+	    return false;
+
+
+	}
+
+
+
+
+public static void main(String[] args){
+	int nums[] = {0,1,2,3,5,2};
+	int k = 3;
+	ContainsCloseNums obj = new ContainsCloseNums();
+	boolean val = obj.containsCloseNums(nums, k);
+	System.out.println(val);
+	
+	
+}
+
+}

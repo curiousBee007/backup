@@ -1,0 +1,6 @@
+INDEX VERSION 1.127+/Users/Anna/Documents/workspace/.metadata/.plugins/org.eclipse.jdt.core
+1623511675.index
+4074071409.index
+2933328465.index
+2629930081.index
+2387548743.index

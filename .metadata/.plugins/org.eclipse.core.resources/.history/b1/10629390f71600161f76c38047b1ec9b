@@ -1,0 +1,56 @@
+
+public class InsertionSort {
+	
+	public static int[] sort(int a[]){
+		int N = a.length;
+		
+		for(int i = 0; i < N ;i++){
+			
+		  for(int j = i; j >0 ; j--){
+			  if (a[j] < a[j-1]){
+				  int temp = a[j];
+				  a[j] = a[j-1];
+				  a[j-1] = temp;
+				  }
+			  
+		  }
+	}
+		
+		return a;
+	}
+	
+
+	
+		
+		public void printArray(int a[]){
+			
+			for(int i = 0; i < a.length;i++){
+				System.out.print( " " + a[i]);
+			}
+			System.out.println();
+		}
+		
+		
+
+	  public static void main(String[] args){
+		  
+		  int a[] = {5,4,3,7,18,9};
+		  SelectionSort obj = new SelectionSort();
+		  
+		  System.out.println("Array  before sorting");
+		  obj.printArray(a);
+		  
+		  a = obj.findSortedArray(a);
+		  
+		  System.out.println("Array after  sorting");
+		  obj.printArray(a);
+	  }
+
+		
+		
+	}
+	
+	
+	
+	
+}

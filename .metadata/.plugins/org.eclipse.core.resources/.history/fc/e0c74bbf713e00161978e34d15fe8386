@@ -1,0 +1,44 @@
+import java.util.Stack;
+
+public class LongestParenthesis {
+	public int longestValidParentheses(String s) {
+        if (s == null)
+        return 0;
+        int count = 0;
+        Stack<Character> stack = new Stack<Character>();
+        for(int i = 0; i < s.length();i++){
+            if(stack.isEmpty()){
+                stack.push(s.charAt(i));
+            }
+            if(!stack.isEmpty()){
+                if(s.charAt(i) == ')'){
+                char s1 = stack.pop();
+                 if (s1 == '('){
+                     
+                count = count +2;
+                     
+                 }
+                 else
+                {
+                    stack.push(s1);
+                 stack.push(s.charAt(i));
+                }
+            }
+            
+        }
+        
+    }
+    return count;
+    }
+	
+	public static void main(String[] args){
+		
+		LongestParenthesis obj = new LongestParenthesis();
+		String s = ")()())";
+		int count = obj.longestValidParentheses(s);
+		System.out.println("Count value  "+count);
+				
+	}
+	
+	
+}

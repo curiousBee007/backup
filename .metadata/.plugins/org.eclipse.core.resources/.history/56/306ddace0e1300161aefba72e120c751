@@ -1,0 +1,111 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class TopKFrequentElement {
+	
+	public List<Integer> topKFrequent(int[] nums, int k) {
+     
+        
+        int maxFreq = 0;
+        
+        Map<Integer, Integer> hashmap = new HashMap<Integer,Integer>();
+        
+        for(int i = 0; i < nums.length;i++){
+        	
+            if (hashmap.containsKey(nums[i])){
+            	
+            	int x = hashmap.get(nums[i]);
+            	x = x +1;
+            	if(maxFreq < x){
+            		maxFreq = x;
+            	}
+            	hashmap.put(nums[i], x);
+            	}
+            	
+            else{
+            	
+            	if(maxFreq < 1){
+            		maxFreq = 1;
+            	}
+            	hashmap.put(nums[i], 1);
+            	
+            	}
+               
+        }
+        
+        System.out.println("Maximum frequency is  "+maxFreq);
+        
+        
+     
+        
+    
+     
+       // ArrayList<Integer> arr=new ArrayList<Integer>(maxFreq);   
+        List<ArrayList<Integer>> frequentList = new ArrayList<ArrayList<Integer>>(maxFreq);
+        
+        List<Integer> finalList = new ArrayList<Integer>();
+        
+        for (int i = 0; i <= maxFreq; i++){
+           ArrayList<Integer> tempList = new ArrayList<Integer>();
+           frequentList.add(tempList);
+        }
+        
+       System.out.println("Size of frequentList " +frequentList.size());
+       System.out.println("Size of frequentList  each list" +frequentList.get(0).size());
+        
+        for (Map.Entry<Integer, Integer> entry : hashmap.entrySet()) {
+        	Integer key = entry.getKey();
+        	Integer value = entry.getValue();
+          
+        	if(frequentList.get(value).size() == 0){
+        	   ArrayList<Integer> tempList = new ArrayList<Integer>();
+        	   tempList.add(key);
+        	   frequentList.add(value, tempList);
+        	   
+           }
+           else{
+        	   System.out.println("Inside temporary list  ");
+        	   ArrayList<Integer> tempList1 =  frequentList.get(value);
+        	   tempList1.add(key);
+        	   frequentList.add(value, tempList1);
+        	   
+        	   }
+        	
+        	}
+        
+        int count = 0;
+        for(ArrayList<Integer> arr1: frequentList){
+        	if(count >= k){
+        		for(int i : arr1){
+        			System.out.println(arr1.get(i));
+        			finalList.add(arr1.get(i));
+        		}
+        	count ++;	
+        	}
+        	
+        	
+        }
+        
+        
+        return finalList;
+    }
+	
+	
+	public static void main(String[] args){
+		
+		TopKFrequentElement obj = new TopKFrequentElement();
+		int nums[] = {1,1,1,2,2,3};
+		int k = 3;
+		List<Integer> list = obj.topKFrequent(nums, k);
+		
+		for(int i = 0; i <list.size(); i++){
+			System.out.println(list.get(i));
+			
+		}
+		
+		
+	}
+
+}

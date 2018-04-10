@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;WordSearch&apos; to &apos;WordSearch_wrong&apos;&#x0A;- Original project: &apos;TreeQuestions_Recursion&apos;&#x0A;- Original element: &apos;WordSearch&apos;&#x0A;- Renamed element: &apos;WordSearch_wrong&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;WordSearch&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{WordSearch.java[WordSearch" matchStrategy="1" name="WordSearch_wrong" qualified="false" references="true" similarDeclarations="false" stamp="1485906489707" textual="false" version="1.0"/>
+</session>

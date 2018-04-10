@@ -1,0 +1,103 @@
+import java.util.*;
+public class GroupingDishes {
+	
+	String[][] groupingDishes(String[][] dishes) {
+
+	    HashMap<String, Set<String>> hmap = new HashMap<String,Set<String>>();
+	    
+	    for(int j = 0 ; j < dishes.length; j++){
+	        
+	    	String[] strArray = dishes[j];
+	    	String value = strArray[0];
+	        for(int i = 1; i < strArray.length;i++){
+	            if(!hmap.containsKey(strArray[i])){
+	                Set<String> temp = new HashSet<String>();
+	                temp.add(value);
+	                hmap.put(strArray[i],temp);
+	            }
+	            else{
+	            	Set<String> temp1 = hmap.get(strArray[i]);
+	                temp1.add(value);
+	                hmap.put(strArray[i],temp1);
+	                 }
+	        }
+	        
+	    }
+	    /* Display content using Iterator*/
+	      Set set = hmap.entrySet();
+	      Iterator iterator = set.iterator();
+	      while(iterator.hasNext()) {
+	         Map.Entry mentry = (Map.Entry)iterator.next();
+	         //System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+	         ArrayList<String> arrList = (ArrayList<String>) (mentry.getValue()); 
+	         //System.out.println(mentry.getValue());
+	         int length = arrList.size();
+	         if(length == 1)
+	        	 hmap.remove(mentry.getKey());
+	      }
+	      
+	      /* Display content using Iterator*/
+	      Set set1 = hmap.entrySet();
+	      Iterator iterator1 = set1.iterator();
+	      while(iterator1.hasNext()) {
+	         Map.Entry mentry1= (Map.Entry)iterator1.next();
+	         System.out.print("key is: "+ mentry1.getKey() + " & Value is: ");
+	         System.out.println(mentry1.getValue());
+	      }
+	    
+	    //Sorting the keySet of HashMap
+	    //
+	    //
+	    //String[][] finalDishAnswer = new String[][];
+	    /*Set<String> ingredientSet = new HashSet<String>();
+	    
+	     Set set = hmap.entrySet();
+	     Iterator iterator = set.iterator();
+	      while(iterator.hasNext()) {
+	         Map.Entry mentry = (Map.Entry)iterator.next();
+	         ingredientSet.add((String) mentry.getKey());
+	    }
+	    
+	    List sortedIngredient = new ArrayList(ingredientSet);
+	    Collections.sort(sortedIngredient);
+	    
+	    int max = 1;
+	    List<List<String>> finalAnswer = new ArrayList<>();
+	    for(int i = 0 ; i < sortedIngredient.size();i++){
+	        ArrayList<String> dishList = hmap.get(sortedIngredient.get(i));
+	        Collections.sort(dishList);
+	        ArrayList<String> temp = new ArrayList<String>();
+	        temp.add((String) sortedIngredient.get(i));
+	        for(String s : dishList){  
+	          temp.add(s);
+	        }
+	        finalAnswer.add(temp);
+	        
+	        max = Math.max(max,temp.size());
+	        
+	    }
+	    
+	    String[][] finalArray = new String[hmap.size()][max];
+	    for(int j = 0 ; j < hmap.size();j++){
+	        List<String> temp = finalAnswer.get(j);
+	        for(int i = 0 ; i < temp.size();i++){
+	            finalArray[j][i] = temp.get(i);
+	        }
+	    }*/
+
+	    //return finalArray;
+	    return null;
+
+	}
+
+	public static void main(String[] args){
+		String dishes[][] = {{"Salad","Tomato","Cucumber","Salad","Sauce"}, 
+				             {"Pizza","Tomato","Sausage","Sauce","Dough"}, 
+				             {"Quesadilla","Chicken","Cheese","Sauce"}, 
+				             {"Sandwich","Salad","Bread","Tomato","Cheese"}};
+		
+		GroupingDishes obj = new GroupingDishes();
+		obj.groupingDishes(dishes);
+	}
+
+}

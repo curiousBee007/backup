@@ -1,0 +1,95 @@
+import java.util.*;
+public class Challenge3 {
+
+	public static void price(String line){
+		StringBuilder sb = new StringBuilder();
+	       int count = 0;
+	       int length = line.length();
+	       while(line.charAt(count) != ';'){
+	         char ch = line.charAt(count);
+	          sb.append(ch);
+	          count = count + 1;
+	       }
+	       
+	       String pp = sb.toString();
+	       double purchasePrice = Double.parseDouble(pp);
+	       
+	       String cp = line.substring(count + 1,length);
+	       double cashPrice = Double.parseDouble(cp);
+	       
+	       double difference = cashPrice - purchasePrice;
+	       
+	       if(difference < 0){
+	         System.out.println("ERROR");
+	         return;
+	       }
+	       if(difference == 0.0){
+	         System.out.println("ZERO");
+	         return;
+	       }
+	       
+	       //List<String> changeValues = new ArrayList<String>();
+	       Set<String> changeSet = new HashSet<String>();
+	       HashMap<Double,String> hmap = new HashMap<Double,String>();
+	       hmap.put(100.00 ,"ONE HUNDRED");
+	       hmap.put(50.00 ,"FIFTY");
+	       hmap.put(20.00 ,"TWENTY");
+	       hmap.put(10.00 ,"TEN");
+	       hmap.put(5.00 ,"FIVE");
+	       hmap.put(2.00 ,"TWO");
+	       hmap.put(1.00 ,"ONE");
+	       hmap.put(0.50 ,"HALF DOLLAR");
+	       hmap.put(0.25 ,"QUARTER");
+	       hmap.put(0.10 ,"DIME");
+	       hmap.put(0.05 ,"NICKEL");
+	       hmap.put(0.01 ,"PENNY");
+	       
+	       
+	       double[] changeArray = {100.00, 50.00, 20.00,10.00,5.00,2.00,1.00,0.50,
+	                               0.25,0.10,0.05,0.01};
+	       
+	       int[] arrDenom = new int[changeArray.length];
+	        
+	       int changeArrayLength = changeArray.length;                      
+	       
+	       for(int i = 0 ; i < changeArrayLength;i++){
+	              
+	              if(difference <= 0.0)
+	            	  break;
+	              arrDenom[i] = (int) (difference/changeArray[i]);
+	              difference = difference - changeArray[i]*arrDenom[i] ;
+	              
+	            }
+	        for(int i = 0 ; i < arrDenom.length ; i++){
+	        	if(arrDenom[i] > 0){
+	        		changeSet.add(hmap.get(changeArray[i]));
+	        	}
+	        	
+	        }
+	         
+	         List<String> currencyList = new ArrayList(changeSet);
+	         Collections.sort(currencyList);
+	       
+	        StringBuilder finalString = new StringBuilder();
+	        for(String s : currencyList)
+	           {
+	             finalString.append(s);
+	             finalString.append(',');
+	           }
+	        
+	        String finalVal = finalString.toString();
+	        //to account for last comma
+	        finalVal = finalVal.substring(0,finalVal.length() -1);
+	        
+	        System.out.println(finalVal);
+	        
+	       
+	}
+	
+	
+	public static void main(String[] args){
+		//String line = "45;50";
+		String line = "15.46;16.0";
+		price(line);
+	}
+}

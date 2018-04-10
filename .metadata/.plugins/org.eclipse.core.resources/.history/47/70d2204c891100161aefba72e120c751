@@ -1,0 +1,13 @@
+
+public class QueueImplement {
+	
+	private int front;
+	private int end;
+	
+	public QueueImplement(int front,int end){
+		this.front = front;
+		this.end = end;
+		
+	}
+
+}

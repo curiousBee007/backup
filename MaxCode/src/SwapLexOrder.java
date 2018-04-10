@@ -1,0 +1,89 @@
+import java.util.*;
+
+
+public class SwapLexOrder {
+	
+	String swapLexOrder(String str, int[][] pairs) {
+		 
+	    int length = str.length();
+	    HashMap<Integer,ArrayList<Integer>> map = new HashMap<Integer,ArrayList<Integer>>();
+	    
+	    for(int i = 1; i <= length; i++){
+	        ArrayList<Integer> neighbor = new ArrayList<Integer>();
+	        map.put(i,neighbor);
+	    }
+	    
+	    for(int i = 0 ; i < pairs.length;i++){
+	        map.get(pairs[i][0]).add(pairs[i][1]);
+	        map.get(pairs[i][1]).add(pairs[i][0]);
+	    }
+	    
+	    HashSet<Integer> visited = new HashSet<Integer>();
+	    Queue<Integer> queue = new LinkedList<Integer>();
+	    List<Set<Integer>> componentList = new ArrayList<>();
+	    //First finding all individual components and then lexicographically placing characters in those components.
+	    for(int i = 1 ; i <= map.size(); i++){
+	       
+	        if(visited.contains(i))
+	           continue;
+	       
+	        Set<Integer> component = new HashSet<Integer>();
+	        queue.add(i);
+	        
+	        while(queue.size() > 0){
+	           int x = queue.remove();
+	           visited.add(x); 
+	           component.add(x); 
+	           ArrayList<Integer> temp = map.get(x);
+	           while(temp.size() > 0){
+	               int front = temp.get(0);
+	               temp.remove(0);
+	               queue.add(front);
+	               map.put(x, temp);
+	              }
+	            } 
+	    
+	     if(component.size() >1)   
+	      componentList.add(component);
+	        
+	    }
+	    char[] strArray = str.toCharArray();
+	    for(Set<Integer> set : componentList){
+	    	List<Integer> indexList = new ArrayList<Integer>();
+	    	List<Character> characterList = new ArrayList<Character>();
+	    	for(Integer i : set){
+	    		//System.out.print(" "+ i);
+	    		indexList.add(i);
+	    		characterList.add(str.charAt(i-1));
+	    	}
+	    	//System.out.println();
+	    	Collections.sort(indexList);
+	    	Collections.sort(characterList,Collections.reverseOrder());
+	    	int j = 0;
+	    	
+	    	for(Integer i :indexList){
+	    		strArray[i-1] = characterList.get(j);
+	    		j = j+1;
+	    		
+	    	}
+	    }
+	    String b = new String(strArray);
+	    return b;
+	}
+	
+	public static void main(String[] args){
+		SwapLexOrder obj = new SwapLexOrder();
+		
+		String str = "abdc";
+		int[][] pairs = {{1,4},{3,4}};
+		String result = obj.swapLexOrder(str, pairs);
+		System.out.println(result);
+		
+		String str1 = "acxrabdz";
+		int[][] pairs1 = {{1,2},{5,7},{2,7},{3,6}};
+		//obj.swapLexOrder(str1, pairs1);
+	}
+
+	
+
+}

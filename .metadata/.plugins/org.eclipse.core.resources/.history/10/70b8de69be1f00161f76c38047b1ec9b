@@ -1,0 +1,110 @@
+
+
+public class RotatingList {
+	
+	
+	 public class ListNode {
+	    int val;
+	    ListNode next;
+	    ListNode(int x) { val = x; }
+	  }
+	 
+	 
+	 public ListNode rotateRight(ListNode head, int k) {
+	        if (head == null){
+	            return null;
+	        }
+	        
+	       ListNode prevHead = head;
+	        int count = 0;
+	        while(head != null){
+	            head =head.next;
+	            count = count +1;
+	        }
+	        
+	        if (k == 0){
+		        return head;
+		        }
+	        
+	        ListNode firstPointer = prevHead;
+	        
+	        ListNode newHead = prevHead;
+	        int x =0;
+	        if(count - k >0){
+	        
+	         while( (x != (count-k-1))){
+	           firstPointer = firstPointer.next;
+	           x = x+1;
+	           } 
+	         
+	         ListNode secondPointer =  firstPointer.next;
+	        
+	         firstPointer.next = null;
+	         
+	         newHead = secondPointer;
+	         while(secondPointer.next != null){
+	        	 //System.out.println( "inside second pointer loop  ");
+	        	 secondPointer = secondPointer.next;
+	         }
+	         
+	         secondPointer.next = prevHead; 
+	         }
+	        
+	        return newHead;
+	    }
+	 
+	 
+	 
+public void print(ListNode l1){
+		 
+		 if(l1 == null)
+			 System.out.println("Empty list");
+		 
+		 while(l1 != null){
+			 System.out.print("   "+l1.val);
+			 l1 = l1.next;
+			 
+			 }
+		 System.out.println("");
+	 }
+	 
+	 
+	 
+	 
+	 public ListNode createList(int a[]){
+		 if(a.length == 0)
+			 return null;
+		 
+		 ListNode head = new ListNode(a[0]);
+		 ListNode prevHead = head;
+		 
+		 for(int i = 1; i < a.length;i++){
+			 head.next = new ListNode(a[i]);
+			 head = head.next;
+			 
+			 }
+		 
+		 head.next = null;
+		 return prevHead;
+		 
+	 }
+	 
+	 public static void main(String[] args){
+		 RotatingList obj = new RotatingList();
+		 int a[] = {1};
+		 ListNode head = obj.createList(a);
+		 
+		 System.out.println( "Printing original list ");
+		 obj.print(head);
+		 System.out.println();
+		 
+		 ListNode head1 = obj.rotateRight(head, 0);
+		 System.out.println( "Printing new list ");
+		 obj.print(head1);
+	 }
+	 
+	 
+	 
+	 
+
+}

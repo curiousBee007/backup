@@ -1,0 +1,45 @@
+
+public class KnuthMP {
+	
+	public static int[] computePrefixFunction(String p){
+		if (p == null)
+			return null;
+		
+		int m = p.length();
+		int phiArray[] = new int[m];
+		phiArray[0] = -1;
+		phiArray[1] = 0;
+		int k = 0;
+		
+		
+		return phiArray;
+		
+		
+	}
+
+	
+	public int findPower(int x, int y){
+		
+		if(y == 1)
+			return x;
+		if(y == 0)
+			return 1;
+		
+		int term = findPower(x,y/2);
+		System.out.println(term);
+		if(y %2 == 0)
+			return term * term;
+		else
+			return term * term *x;
+		
+		}
+
+	public static void main(String[] args){
+		KnuthMP obj = new KnuthMP();
+		int expVal = obj.findPower(2,5); 
+		System.out.println("Value of exponent is  "+expVal);
+		
+	}
+	
+	
+}

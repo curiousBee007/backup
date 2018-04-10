@@ -1,0 +1,92 @@
+import java.util.*;
+
+
+public class SwapLexOrder {
+	
+	String swapLexOrder(String str, int[][] pairs) {
+		 
+	    int length = str.length();
+	    HashMap<Integer,ArrayList<Integer>> map = new HashMap<Integer,ArrayList<Integer>>();
+	    
+	    for(int i = 1; i <= length; i++){
+	        ArrayList<Integer> neighbor = new ArrayList<Integer>();
+	        map.put(i,neighbor);
+	    }
+	    
+	    for(int i = 0 ; i < pairs.length;i++){
+	        map.get(pairs[i][0]).add(pairs[i][1]);
+	        map.get(pairs[i][1]).add(pairs[i][0]);
+	    }
+	    
+	    Set set1 = map.entrySet();
+	      Iterator iterator = set1.iterator();
+	      while(iterator.hasNext()) {
+	         Map.Entry mentry = (Map.Entry)iterator.next();
+	         System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+	         //System.out.println(mentry.getValue());
+	         ArrayList<Integer> arrList = (ArrayList<Integer>) mentry.getValue();
+	         for(Integer k :arrList ){
+	        	 System.out.print(" "+k);
+	         }
+	         System.out.println();
+	      }
+
+	 
+	    HashSet<Integer> visited = new HashSet<Integer>();
+	    Queue<Integer> queue = new LinkedList<Integer>();
+	    List<Set<Integer>> componentList = new ArrayList<>();
+	    
+	    for(int i = 1 ; i <= map.size(); i++){
+	       
+	        if(visited.contains(i))
+	           continue;
+	       
+	        Set<Integer> component = new HashSet<Integer>();
+	        queue.add(i);
+	        
+	        while(queue.size() > 0){
+	           
+	           int x = queue.remove();
+	           visited.add(x); 
+	           component.add(x); 
+	           ArrayList<Integer> temp = map.get(x);
+	           
+	           while(temp.size() > 0){
+	               int front = temp.get(0);
+	               temp.remove(0);
+	               queue.add(front);
+	               map.put(x, temp);
+	              }
+	            
+	           
+	       } 
+	    
+	     if(component.size() >1)   
+	      componentList.add(component);
+	        
+	    }
+	    for(Set<Integer> set : componentList){
+	    	for(Integer i : set){
+	    		System.out.print(" "+ i);
+	    	}
+	    	System.out.println();
+	    }
+	    
+	    return null;
+	}
+	
+	public static void main(String[] args){
+		SwapLexOrder obj = new SwapLexOrder();
+		
+		String str = "abdc";
+		int[][] pairs = {{1,4},{3,4}};
+		//obj.swapLexOrder(str, pairs);
+		
+		String str1 = "acxrabdz";
+		int[][] pairs1 = {{1,2},{5,7},{2,7},{3,6}};
+		obj.swapLexOrder(str1, pairs1);
+	}
+
+	
+
+}

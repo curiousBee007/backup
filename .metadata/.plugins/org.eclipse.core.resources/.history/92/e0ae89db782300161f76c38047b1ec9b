@@ -1,0 +1,84 @@
+
+
+public class ReverseLinkedList {
+	 
+	
+	public class ListNode {
+		    int val;
+		    ListNode next;
+		    ListNode(int x) { val = x; }
+		  }
+	
+	
+	public void print(ListNode l1){
+		 
+		 if(l1 == null)
+			 System.out.println("Empty list");
+		 
+		 while(l1 != null){
+			 System.out.print("   "+l1.val);
+			 l1 = l1.next;
+			 
+			 }
+		 System.out.println("");
+	 }
+	
+	
+	public ListNode createList(int a[]){
+		 if(a.length == 0)
+			 return null;
+		 
+		 ListNode head = new ListNode(a[0]);
+		 ListNode prevHead = head;
+		 
+		 for(int i = 1; i < a.length;i++){
+			 head.next = new ListNode(a[i]);
+			 head = head.next;
+			 
+			 }
+		 
+		 head.next = null;
+		 return prevHead;
+		 
+	 }
+	
+	public ListNode reverseList(ListNode head) {
+	    if(head==null || head.next == null)
+	        return head;
+	 
+	    //get second node    
+	    ListNode second = head.next;
+	    //set first's next to be null
+	    head.next = null;
+	 
+	    ListNode rest = reverseList(second);
+	    second.next = head;
+	 
+	    return rest;
+	}
+
+	
+	
+	
+	
+	
+	public static void main(String[] args){
+		ReverseLinkedList obj = new ReverseLinkedList();
+		 int a[] = {10,20,30,40};
+		 ListNode head = obj.createList(a);
+		 
+		 System.out.println( "Printing original list ");
+		 obj.print(head);
+		 System.out.println();
+		 
+		 
+		 
+		 
+		
+	 }
+	 
+	
+	
+	
+
+}

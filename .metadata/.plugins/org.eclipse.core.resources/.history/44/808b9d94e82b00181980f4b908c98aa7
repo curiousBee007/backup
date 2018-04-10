@@ -1,0 +1,130 @@
+import java.util.HashSet;
+import java.util.*;
+
+class Tree<T> {
+Tree(T x) {
+    value = x;
+}
+T value;
+Tree<T> left;
+Tree<T> right;
+}
+
+public class FindSubstrings {
+	String[] findSubstrings(String[] words, String[] parts) {
+
+	    Set<String> setWord = new HashSet<String>();
+	    for(int i = 0 ; i < parts.length;i++){
+	        setWord.add(parts[i]);
+	    }
+	    
+	    for(int i = 0 ; i < words.length;i++){
+	        words[i] = findChangedString(setWord,words[i]);
+	    }
+
+	   return words;
+	}
+
+	public String findChangedString(Set<String> subStringSet,String initString){
+	    String maxSubstr = null;
+	    int maxIndex = -1;
+	    int maxLength = 0;
+	    
+	    int length = initString.length();
+	    
+	    for(int i = 0 ; i < length  ; i++){
+	        for(int j = i+1 ; j <= length ;j++){
+	            
+	            String subString = initString.substring(i,j);
+	            if(subStringSet.contains(subString)){
+	                if(maxSubstr == null){
+	                    maxSubstr = subString;
+	                    maxIndex = i;
+	                    maxLength = subString.length();
+	                }
+	                else{
+	                    int l = subString.length();
+	                    if(l > maxLength){
+	                        maxSubstr = subString;
+	                        maxIndex = i;
+	                    maxLength = l;
+	                    }
+	                }
+	            }
+	            
+	        }
+	    }
+	    
+	    
+	    if(maxSubstr == null)
+	        return initString;
+	    
+	    StringBuilder sb = new StringBuilder();
+	    String firstPart = initString.substring(0,maxIndex);
+	    sb.append(firstPart);
+	    sb.append("[");
+	    sb.append(initString.substring(maxIndex,maxIndex+maxLength));
+	     sb.append("]"); 
+	    sb.append(initString.substring(maxIndex+maxLength,initString.length()));
+	    
+	    String s = sb.toString();
+	    return s;
+	}
+	
+	int[] traverseTree(Tree<Integer> t) {
+
+		   List<Integer> arrList = new ArrayList<Integer>();
+		    Queue<Tree<Integer>> queue = new LinkedList<Tree<Integer>>();
+		    queue.add(t);
+		    
+		    while(queue.size() > 0){
+		        int size = queue.size();
+		        while(size > 0){
+		            Tree top = queue.remove();
+		            arrList.add((Integer) top.value);
+		            if(top.left != null){
+		                queue.add(top.left);
+		            }
+		            if(top.right != null){
+		                queue.add(top.right);
+		            }
+		            size = size -1;
+		        }    
+		    }
+		    int length = arrList.size();
+		   // Integer[] finalArray = (Integer[]) arrList.toArray();
+		    int[] finArray = new int[length];
+		    int j = 0;
+		    for(Integer i : arrList){
+		    	finArray[j] = i;
+		    	j = j+1;
+		    }
+		    return finArray;
+
+		}
+
+    
+	public static void main(String[] args){
+		FindSubstrings obj = new FindSubstrings();
+		String words[] = {"Apple", "Melon",  "Orange", "Watermelon"};
+		String parts[] = {"a","mel","lon", "el", "An"};
+		
+		//String str[] = obj.findSubstrings(words,parts);
+		/*for(String i : str){
+			System.out.print(" "+i);
+			
+		}*/
+		
+		Tree<Integer> head = new Tree(1);
+		head.left = new Tree(2);
+		head.right = new Tree(4);
+		head.left.right = new Tree(3);
+		head.right.left = new Tree(5);
+		
+		int[] val1 = obj.traverseTree(head);
+		for(int i : val1)
+			System.out.print(" "+i);
+	}
+	
+	
+}

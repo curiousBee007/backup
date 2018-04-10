@@ -1,0 +1,77 @@
+import java.util.HashSet;
+import java.util.*;
+public class FindSubstrings {
+	String[] findSubstrings(String[] words, String[] parts) {
+
+	    Set<String> setWord = new HashSet<String>();
+	    for(int i = 0 ; i < parts.length;i++){
+	        setWord.add(parts[i]);
+	    }
+	    
+	    for(int i = 0 ; i < words.length;i++){
+	        words[i] = findChangedString(setWord,words[i]);
+	    }
+
+	   return words;
+	}
+
+	public String findChangedString(Set<String> subStringSet,String initString){
+	    String maxSubstr = null;
+	    int maxIndex = -1;
+	    int maxLength = 0;
+	    
+	    int length = initString.length();
+	    
+	    for(int i = 0 ; i < length  ; i++){
+	        for(int j = i+1 ; j <= length ;j++){
+	            
+	            String subString = initString.substring(i,j);
+	            if(subStringSet.contains(subString)){
+	                if(maxSubstr == null){
+	                    maxSubstr = subString;
+	                    maxIndex = i;
+	                    maxLength = subString.length();
+	                }
+	                else{
+	                    int l = subString.length();
+	                    if(l > maxLength){
+	                        maxSubstr = subString;
+	                        maxIndex = i;
+	                    maxLength = l;
+	                    }
+	                }
+	            }
+	            
+	        }
+	    }
+	    
+	    
+	    if(maxSubstr == null)
+	        return initString;
+	    
+	    StringBuilder sb = new StringBuilder();
+	    String firstPart = initString.substring(0,maxIndex);
+	    sb.append(firstPart);
+	    sb.append("[");
+	    sb.append(initString.substring(maxIndex,maxIndex+maxLength));
+	     sb.append("]"); 
+	    sb.append(initString.substring(maxIndex+maxLength,initString.length()));
+	    
+	    String s = sb.toString();
+	    return s;
+	}
+    
+	public static void main(String[] args){
+		FindSubstrings obj = new FindSubstrings();
+		String words[] = {"Apple", "Melon",  "Orange", "Watermelon"};
+		String parts[] = {"a","mel","lon", "el", "An"};
+		
+		String str[] = obj.findSubstrings(words,parts);
+		for(String i : str){
+			System.out.print(" "+i);
+		}
+		
+	}
+	
+	
+}

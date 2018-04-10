@@ -1,0 +1,14 @@
+import java.util.Random;
+
+public class RandomNumberExample {
+	
+	public static void main(String[] args){
+		
+		double random = new Random().nextDouble();
+		System.out.println(random);
+	}
+	
+	
+	
+
+}

@@ -1,0 +1,67 @@
+
+public class ReverseWordsInString {
+
+	
+	public String reverseWords(String s) {
+		
+		
+		/*Given s = "the sky is blue",
+           return "blue is sky the"*/
+		
+		 if(s == "")
+		        return "";
+		        
+		        if(s == " ")
+		        return "";
+		        
+		        
+		        
+		         
+		        if (s == null || s.length() == 0) {
+					return "";
+				}
+        String newStr = "";
+        
+        int firstindex = -1; 
+        int lastIndex = s.length();
+        for(int i = s.length() -1;i >=0;i --){
+        	
+        	if (s.charAt(i) == ' ' || i == 0){
+        		firstindex = i+1;
+        	
+        		if (i == 0)
+        			firstindex = 0;
+        		
+        		
+        		
+        		for (int j = firstindex; j < lastIndex;j++){
+        			newStr = newStr +String.valueOf(s.charAt(j));
+        			//s.
+        		}
+        		newStr = newStr + " " ;
+        		lastIndex = firstindex-1 ;
+        		
+        		
+        	}
+           
+      }
+        System.out.println("Cool");
+        return newStr;
+    }
+	
+	
+	
+	public static void main(String[] args){
+		
+		ReverseWordsInString obj = new ReverseWordsInString();
+		String s = "the sky is blue";
+		String s1 = " ";
+		System.out.println(s1.length());
+		
+		String s2 = obj.reverseWords(s1);
+		System.out.println("Length "+s2.length());
+		
+	}
+	
+	
+}

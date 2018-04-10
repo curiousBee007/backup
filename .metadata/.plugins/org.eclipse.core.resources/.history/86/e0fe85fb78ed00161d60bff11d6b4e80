@@ -1,0 +1,39 @@
+
+public class GroupAnagrams {
+	
+	 public static String generatingCodeAnagrams(String s){
+	        int a[] = new int[26];
+	        for(int i = 0 ; i < s.length();i++){
+	            char x = s.charAt(i);
+	            int n = x-97;
+	            a[n] = a[n] +1;
+	        }
+	        StringBuilder sb = new StringBuilder();
+	        for(int i = 0 ; i < 26;i++){
+	        	if(a[i] >0){
+	        	sb.append(a[i]);
+	        	sb.append(i);
+	        	sb.append('_');
+	        
+	        	}
+	        }
+	        
+	        sb.setLength(sb.length() -1);
+	        return sb.toString();
+	    } 
+	    
+	    
+	    /*public List<List<String>> groupAnagrams(String[] strs) {
+	        
+	    }*/
+
+	public static void main(String[] args) {
+		
+		String s = "eat";
+		String s1 = generatingCodeAnagrams(s);
+		System.out.println(s);
+		// TODO Auto-generated method stub
+
+	}
+
+}

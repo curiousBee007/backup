@@ -1,0 +1,93 @@
+
+public class ReverseWordsInString {
+
+	
+	public String reverseWords(String s) {
+		
+		
+		/*Given s = "the sky is blue",
+           return "blue is sky the"*/
+		
+		 if(s == "")
+		        return "";
+		        
+		        if(s == " ")
+		        return "";
+		        
+		        
+		        
+		         
+		        if (s == null || s.length() == 0) {
+					return "";
+				}
+        String newStr = "";
+        
+        int firstindex = -1; 
+        int lastIndex = s.length();
+        for(int i = s.length() -1;i >=0;i --){
+        	
+        	if (s.charAt(i) == ' ' || i == 0){
+        		firstindex = i+1;
+        	
+        		if (i == 0)
+        			firstindex = 0;
+        		
+        		
+        		
+        		for (int j = firstindex; j < lastIndex;j++){
+        			newStr = newStr +String.valueOf(s.charAt(j));
+        			//s.
+        		}
+        		newStr = newStr + " " ;
+        		lastIndex = firstindex-1 ;
+        		
+        		
+        	}
+           
+      }
+        System.out.println("Cool");
+        return newStr;
+    }
+	
+	
+	public String reverseWords1(String s) {
+		
+		
+		
+		 if (s == null || s.length() == 0) {
+				return "";
+			}
+	 
+			// split to words by space
+			String[] arr = s.split(" ");
+			for(int i = 0; i < arr.length;i++){
+				System.out.println(arr[i]);
+			}
+			
+			StringBuilder sb = new StringBuilder();
+			for (int i = arr.length - 1; i >= 0; --i) {
+				if (!arr[i].equals("")) {
+					sb.append(arr[i]).append(" ");
+				}
+			}
+			return sb.length() == 0 ? "" : sb.substring(0, sb.length() - 1);
+	       
+	        
+	        
+	}
+	
+	
+	
+	public static void main(String[] args){
+		
+		ReverseWordsInString obj = new ReverseWordsInString();
+		String s = "the sky is blue";
+		
+		
+		String s2 = obj.reverseWords1(s);
+		System.out.println(s2);
+		
+	}
+	
+	
+}

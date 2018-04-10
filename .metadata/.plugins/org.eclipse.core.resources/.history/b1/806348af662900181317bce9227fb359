@@ -1,0 +1,70 @@
+
+
+class ListNode<T> {
+ListNode(T x) {
+  value = x;
+}
+T value;
+ListNode<T> next;
+}
+
+public class Palindrome {
+
+	boolean isListPalindrome(ListNode<Integer> l) {
+		   ListNode head = l;
+		   ListNode fast = head, slow = head;
+		   while(fast != null && fast.next != null){
+		      
+		      fast = fast.next.next;
+		      slow = slow.next;
+		   }
+		   if(fast != null){
+		      //for tackling lists with odd size
+		      slow = slow.next;
+		   }
+		   slow = reverse(slow);
+		   fast = head;
+		   
+		   while(slow != null){
+		      if(fast.value != slow.value)
+		         {
+		    	  System.out.println("Fast value "+fast.value);
+		    	  System.out.println("Slow value "+slow.value);
+		    	  return false;
+		         }
+		      System.out.println();
+		      
+		      fast = fast.next;
+		      slow = slow.next;
+		   }
+		   return true;
+		}
+
+		public ListNode reverse(ListNode head){
+		   
+		   ListNode prev = null;
+		   while(head != null){
+		      ListNode next = head.next;
+		      head.next = prev;
+		      prev = head;
+		      head = next;
+		   }
+		  return prev;
+
+		}
+
+      public static void main(String[] args){
+    	  ListNode head = new ListNode(1);
+    	  head.next = new ListNode(1000000000);
+    	  head.next.next = new ListNode(-1000000000);
+    	  head.next.next.next = new ListNode(-1000000000);
+    	  head.next.next.next.next = new ListNode(1000000000);
+    	  head.next.next.next.next.next = new ListNode(1);
+    	  
+    	  Palindrome obj = new Palindrome();
+    	  boolean val = obj.isListPalindrome(head);
+    	  System.out.println(val);
+      }
+
+
+}

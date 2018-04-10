@@ -1,0 +1,99 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+/*Why we are using this keyword and how to delete element from a list(For deleting use list.remove())
+ * We could have used a simple array for stack as well
+ * public class MyStack {
+   private int maxSize;
+   private long[] stackArray;
+   private int top;
+   public MyStack(int s) {
+      maxSize = s;
+      stackArray = new long[maxSize];
+      top = -1;
+   }
+   public void push(long j) {
+      stackArray[++top] = j;
+   }
+   public long pop() {
+      return stackArray[top--];
+   }
+   public long peek() {
+      return stackArray[top];
+   }
+   public boolean isEmpty() {
+      return (top == -1);
+   }
+   public boolean isFull() {
+      return (top == maxSize - 1);
+   }*/
+public class StackImplement {
+	
+	int top ;
+	List<Integer> stack1 = new ArrayList<Integer>();
+	int size;
+
+
+	public StackImplement(){
+		this.top = -1;
+	}
+	
+	public boolean isEmpty(){
+		
+		boolean isEmpty = false;
+		
+		if(top == -1){
+			System.out.println("Stack is empty");
+			isEmpty =  true;
+		}
+		return isEmpty;
+	
+	}
+   
+	public void push(int x){
+		
+		top++;
+		stack1.add(top, x);
+		
+		
+	}
+	
+  public Integer pop(){
+	  if (isEmpty()){
+		  System.out.println("Stack is empty it cannot be popped");
+		  return null;
+		 }
+	  
+	 
+	  int x = stack1.get(top);
+	  this.stack1.remove(top);
+	
+	  top --;
+	  return x;
+	  }
+
+	
+  public static void main(String[] args){
+	  
+	  StackImplement obj = new StackImplement();
+	  
+	  obj.push(20);
+	  obj.push(30);
+	 
+	  obj .push(40);
+	  obj.pop();
+	 
+	 // obj.pop();
+	  
+	  int x = obj.pop();
+	  
+	  System.out.println("Element on top" + x);
+	  System.out.println("Size of stack  "+obj.stack1.size());
+	  
+}
+  
+  
+  
+	
+}

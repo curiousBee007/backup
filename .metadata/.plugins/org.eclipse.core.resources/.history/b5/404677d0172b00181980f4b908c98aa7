@@ -1,0 +1,119 @@
+import java.util.*;
+public class ContainsCloseNums {
+
+	boolean containsCloseNums(int[] nums, int k) {
+
+	    HashMap<Integer,ArrayList<Integer>> hmap = new HashMap<Integer,ArrayList<Integer>>();
+	    
+	    for(int i = 0 ; i < nums.length ; i++){
+	       
+	    	if(hmap.containsKey(nums[i])){
+	            ArrayList<Integer> temp1 = hmap.get(nums[i]);
+	            temp1.add(i);
+	            hmap.put(nums[i],temp1);
+	        }
+	        else{
+	        	ArrayList<Integer> temp = new ArrayList<Integer>();
+	        	temp.add(i);
+	        	hmap.put(nums[i],temp);
+	        }
+	        
+	    }
+	    
+	    Set set = hmap.entrySet();
+	    Iterator iterator = set.iterator();
+	    while(iterator.hasNext()) {
+	         Map.Entry mentry = (Map.Entry)iterator.next();
+	         //System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+	         ArrayList<Integer> arrList = (ArrayList<Integer>)mentry.getValue();
+	         
+	         if(arrList.size() > 1){
+	            Collections.sort(arrList);
+	            
+	            //int short = arrList.get(0);
+	            for(int i = 0; i < arrList.size()-1; i++){
+	                for(int j = i+1; j < arrList.size();j++){
+	                    int diff = Math.abs(arrList.get(i) - arrList.get(j));
+	                    //System.out.println(diff);
+	                    if(diff <= k)
+	                        return true;
+	                }
+	             
+	         }
+	        } 
+	      }
+
+	    return false;
+
+
+	}
+
+	boolean areFollowingPatterns(String[] strings, String[] patterns) {
+
+	    Map<String,String> stringPattern = new HashMap<String,String>();
+	    Map<String,String> patternString = new HashMap<String,String>();
+	    
+	    if(strings.length != patterns.length)
+	        return false;
+	    
+	    for(int i = 0 ; i < strings.length; i++){
+	        if(stringPattern.containsKey(strings[i])){
+	            String ch = stringPattern.get(strings[i]);
+	            if(!patternString.containsKey(ch))
+	                return false;
+	            else{
+	                String s = patternString.get(ch);
+	                if(!s.equals(strings[i]))
+	                    return false;
+	            }
+	            
+	        }
+	        else{
+	            stringPattern.put(strings[i],patterns[i]);
+	            if(patternString.containsKey(patterns[i]))
+	                return false;
+	            patternString.put(patterns[i],strings[i]);
+	        }
+	    }
+	    
+	    /* Display content using Iterator*/
+	      Set set = stringPattern.entrySet();
+	      Iterator iterator = set.iterator();
+	      while(iterator.hasNext()) {
+	         Map.Entry mentry = (Map.Entry)iterator.next();
+	         System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+	         System.out.println(mentry.getValue());
+	      }
+	      
+	      System.out.println();
+	      Set set1 = patternString.entrySet();
+	      Iterator iterator1 = set1.iterator();
+	      while(iterator1.hasNext()) {
+	         Map.Entry mentry1 = (Map.Entry)iterator1.next();
+	         System.out.print("key is: "+ mentry1.getKey() + " & Value is: ");
+	         System.out.println(mentry1.getValue());
+	      }
+	      
+	    
+	    return true;
+	}
+
+
+
+
+public static void main(String[] args){
+	int nums[] = {0,1,2,3,5,2};
+	int k = 3;
+	ContainsCloseNums obj = new ContainsCloseNums();
+	boolean val = obj.containsCloseNums(nums, k);
+	//System.out.println(val);
+	String[] str1 = {"cat","dog","dog"};
+	String[] pattern1 = {"a","b","b"};
+	String[] str2 = {"cat","dog","doggy"};
+	boolean val1 = obj.areFollowingPatterns(str1, pattern1);
+	System.out.println(val1);
+	
+	
+}
+
+}

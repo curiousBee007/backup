@@ -1,0 +1,199 @@
+
+
+public class ReverseLinkedList {
+	 
+	
+	public class ListNode {
+		    int val;
+		    ListNode next;
+		    ListNode(int x) { val = x; }
+		  }
+	
+	
+	public void print(ListNode l1){
+		 
+		 if(l1 == null)
+			 System.out.println("Empty list");
+		 
+		 while(l1 != null){
+			 System.out.print("   "+l1.val);
+			 l1 = l1.next;
+			 
+			 }
+		 System.out.println("");
+	 }
+	
+	
+	public ListNode createList(int a[]){
+		 if(a.length == 0)
+			 return null;
+		 
+		 ListNode head = new ListNode(a[0]);
+		 ListNode prevHead = head;
+		 
+		 for(int i = 1; i < a.length;i++){
+			 head.next = new ListNode(a[i]);
+			 head = head.next;
+			 
+			 }
+		 
+		 head.next = null;
+		 return prevHead;
+		 
+	 }
+	
+	public ListNode reverseList(ListNode head) {
+	    if(head==null || head.next == null)
+	        return head;
+	 
+	    //get second node    
+	    ListNode second = head.next;
+	    //set first's next to be null
+	    head.next = null;
+	 
+	    ListNode rest = reverseList(second);
+	    second.next = head;
+	 
+	    return rest;
+	}
+
+	
+	public ListNode reverseListIterative(ListNode head) {
+	    if(head==null||head.next==null)
+	        return head;
+	 
+	    ListNode p1 = head;
+	    ListNode p2 = p1.next;
+	 
+	    head.next = null;
+	    while(p1!=null&& p2!=null){
+	        ListNode t = p2.next;
+	        p2.next = p1;
+	        p1 = p2;
+	        p2 = t;
+	    }
+	 
+	    return p1;
+	}
+	
+	
+	
+	/*public ListNode partition(ListNode head, int x) {
+        if(head == null )
+        return null;
+        
+        if(head.next == null)
+        return head;
+        
+        ListNode tempHead = head;
+        ListNode firstPointer = head;
+        ListNode secondPointer = head.next;
+        
+       if (firstPointer.val > x)
+        
+        
+        while(secondPointer != null){
+            
+            if(secondPointer.val >= x){
+                
+            	System.out.println(secondPointer.val +"in less than loop");
+                secondPointer = secondPointer.next;
+                firstPointer = firstPointer.next;
+                
+                }
+            
+            else{
+            	 System.out.println("In greater than loop  "+secondPointer.val);
+                 ListNode tempNode = secondPointer.next;
+                 secondPointer.next = tempNode.next;
+                 tempNode.next = firstPointer.next.next;
+                 firstPointer.next = tempNode;
+                secondPointer = secondPointer.next;
+                firstPointer = firstPointer.next;
+                 
+             }
+        }
+        
+        return tempHead;
+    }
+	*/
+	
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	public ListNode partition(ListNode head,int x){
+		
+		public ListNode partition(ListNode head, int x) {
+	        // write your code here
+	        if (head == null) {
+	            return null;
+	        }
+	        ListNode helper1 = new ListNode(0);
+	        ListNode helper2 = new ListNode(0);
+	        ListNode p1 = helper1;
+	        ListNode p2 = helper2;
+	        while (head != null) {
+	            if (head.val < x) {
+	                p1.next = head;
+	                p1 = p1.next;
+	            } else {
+	                p2.next = head;
+	                p2 = p2.next;
+	            } 
+	            head = head.next;
+	        }
+	        p2.next = null;
+	        p1.next = helper2.next;
+	        return helper1.next;
+	    }
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args){
+		ReverseLinkedList obj = new ReverseLinkedList();
+		 int a[] = {2,2,0};
+		 ListNode head = obj.createList(a);
+		 
+		 System.out.println( "Printing original list ");
+		 obj.print(head);
+		 System.out.println();
+		 
+		 /*ListNode head1= obj.reverseList(head);
+		 System.out.println( "Printing reverse list ");
+		 obj.print(head1);
+		 System.out.println();*/
+		 
+		 
+		 ListNode head1= obj.partition(head, 2);
+		 System.out.println( "Partition ");
+		 obj.print(head1);
+		 System.out.println();
+		 
+		 
+		 /*ListNode head2= obj.reverseListIterative(head);
+		 System.out.println( "Printing reverse list  iteratively");
+		 obj.print(head2);
+		 System.out.println();*/
+		 
+	 }
+	 
+	
+	
+	
+
+}
